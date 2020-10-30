@@ -13,8 +13,8 @@ namespace EmployeeManagementSystem.Models
         public string Address { get; set; }
         public string Qualification { get; set; }
         public string ContactNo { get; set; }
+        public int DepartmentID { get; set; }
 
         public Department Department { get; set; }
-
     }
 }
