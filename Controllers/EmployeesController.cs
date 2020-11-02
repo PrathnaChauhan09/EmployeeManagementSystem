@@ -19,11 +19,12 @@ namespace EmployeeManagementSystem.Controllers
             _context = context;
         }
 
+
         // GET: Employees
         public async Task<IActionResult> Index()
         {
             var employeeContext = _context.Employees.Include(e => e.Department);
-            return View(await employeeContext.ToListAsync());
+             return View(await employeeContext.ToListAsync());
         }
 
         // GET: Employees/Details/5
@@ -48,7 +49,7 @@ namespace EmployeeManagementSystem.Controllers
         // GET: Employees/Create
         public IActionResult Create()
         {
-            ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "DepartmentID");
+            ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "Name");
             return View();
         }
 
@@ -65,7 +66,7 @@ namespace EmployeeManagementSystem.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "DepartmentID", employee.DepartmentID);
+            ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "Name", employee.DepartmentID);
             return View(employee);
         }
 
@@ -82,7 +83,7 @@ namespace EmployeeManagementSystem.Controllers
             {
                 return NotFound();
             }
-            ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "DepartmentID", employee.DepartmentID);
+            ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "Name", employee.DepartmentID);
             return View(employee);
         }
 
@@ -118,7 +119,7 @@ namespace EmployeeManagementSystem.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "DepartmentID", employee.DepartmentID);
+            ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "Name", employee.DepartmentID);
             return View(employee);
         }
 
